@@ -1,0 +1,13 @@
+$radious : 10px;
+.cards {
+    border: 2px solid rgb(13, 110, 253);
+    border-radius: $radious;
+}
+.img {
+    border-radius: $radious $radious 0 0;
+}
+.badge {
+    top:10px;
+    right:20px;
+    font-size:17px;
+}
