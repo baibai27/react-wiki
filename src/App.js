@@ -9,10 +9,14 @@ import Search from "./components/Search/Search";
 function App() {
   let [page, setPage] = useState(1);
   let [search, setSearch] = useState("");
+  let [status, setStatus] = useState("");
+  let [gender, setGender] = useState("");
+  let [species, setSpecies] = useState(""); // [species, updateSpecies] = useState("");
+
   let [fetchedData, updateFetchedData] = useState([]);
   let { info, results } = fetchedData;
 
-  let api = `https://rickandmortyapi.com/api/character/?page=${page}&name=${search}`;
+  let api = `https://rickandmortyapi.com/api/character/?page=${page}&name=${search}&status=${status}&gender=${gender}&species=${species}`;
   useEffect(() => {
     (async function () {
       let data = await fetch(api).then((res) => res.json());
@@ -24,12 +28,16 @@ function App() {
       <h1 className="text-center ubuntu my-4">
         Rick & Morty <span className="text-primary">Wiki</span>
       </h1>
-      <Search setSearch={setSearch} setPage={setPage}/>
+      <Search setSearch={setSearch} setPage={setPage} />
       <div className="container">
         <div className="row">
-          <div className="col-3">
-            <Filters />
-          </div>
+          <Filters
+            setStatus={setStatus}
+            setGender={setGender}
+            setPage={setPage}
+            setSpecies={setSpecies}
+          />
+
           <div className="col-8">
             <div className="row">
               <Cards results={results} />
